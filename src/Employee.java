@@ -13,14 +13,13 @@ class Employee {
     private Date updatedDate;
     private Date deletedDate;
 
-    public Employee(String fullName, String position, double salary, String departmentName, EmployeeType employeeType) {
+    public Employee(int no,String fullName, String position, double salary, String departmentName, EmployeeType employeeType) {
         this.no = departmentName.substring(0, 2).toUpperCase() + employeeCounter++;
         this.fullName = fullName;
         setPosition(position);
         setSalary(salary);
         this.departmentName = departmentName;
         this.employeeType = employeeType;
-        this.createdDate = new Date();
     }
 
     public String getNo() {

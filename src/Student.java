@@ -2,12 +2,12 @@ import java.util.Date;
 
 public class Student {
     private String fullName;
-    private String groupNo;
+    private int groupNo;
     private double point;
     private Date createdDate;
     private Date updatedDate;
 
-    public Student(String fullName, String groupNo, double point) {
+    public Student(String fullName, int groupNo, double point) {
         this.fullName = fullName;
         this.groupNo = groupNo;
         this.point = point;
@@ -18,7 +18,7 @@ public class Student {
         return fullName;
     }
 
-    public String getGroupNo() {
+    public int getGroupNo() {
         return groupNo;
     }
 
