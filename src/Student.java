@@ -2,6 +2,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 public class Student {
+    Scanner scanner = new Scanner(System.in);
     private String fullName;
     private int groupNo;
     private double point;
@@ -9,7 +10,6 @@ public class Student {
     private Date updatedDate;
 
     public Student() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("FullName daxil et");
         this.fullName = scanner.nextLine();
         System.out.println("Grup no daxil et");
@@ -26,6 +26,15 @@ public class Student {
         this.createdDate = new Date();
     }
 
+    @Override
+    public String toString() {
+        return "Student{" +
+                "fullName='" + fullName + '\'' +
+                ", groupNo=" + groupNo +
+                ", point=" + point +
+                '}';
+    }
+
     public String getFullName() {
         return fullName;
     }
@@ -38,16 +47,16 @@ public class Student {
         return point;
     }
 
-    public void setPoint(double point) {
-        this.point = point;
-    }
-
     public Date getCreatedDate() {
         return createdDate;
     }
 
     public Date getUpdatedDate() {
         return updatedDate;
+    }
+
+    public void setGroupNo(int groupNo) {
+        this.groupNo = groupNo;
     }
 
     public void setUpdatedDate(Date updatedDate) {
