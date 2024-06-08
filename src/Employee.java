@@ -2,6 +2,7 @@ import java.util.Date;
 import java.util.Scanner;
 
 class Employee {
+    Scanner scanner = new Scanner(System.in);
     private static int employeeCounter = 1000;
 
     private final String no;
@@ -15,22 +16,22 @@ class Employee {
     private Date deletedDate;
 
     public Employee() {
-        Scanner scanner = new Scanner(System.in);
         System.out.println("Full name daxil et");
         this.fullName = scanner.next();
         System.out.println("position daxil et");
         this.position = scanner.next();
-        scanner.nextLine();
         while (true) {
-            if (this.salary < 250) {
-                System.out.println("Salary daxil et");
-                this.salary = scanner.nextInt();
-            } else {
-                break;
+            System.out.println("Salary daxil et:");
+            double salary = scanner.nextDouble();
+            if (salary < 250) {
+                System.out.println("Maas 250den ashagi ola bilmez!");
+                continue;
             }
+            this.salary = salary;
+            break;
         }
         System.out.println("Department name daxil et");
-        this.departmentName = scanner.nextLine();
+        this.departmentName = scanner.next();
         EmployeeType employeeType;
         System.out.println("Employee type daxil et (1: FullTime, 2: PartTime, 3: Adjunct)");
         int employeeTypeChoice = scanner.nextInt();
@@ -56,6 +57,21 @@ class Employee {
         this.departmentName = departmentName;
         this.employeeType = employeeType;
         this.createdDate = new Date();
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "no='" + no + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", position='" + position + '\'' +
+                ", salary=" + salary +
+                ", departmentName='" + departmentName + '\'' +
+                ", employeeType=" + employeeType +
+                ", createdDate=" + createdDate +
+                ", updatedDate=" + updatedDate +
+                ", deletedDate=" + deletedDate +
+                '}';
     }
 
     public String getNo() {
