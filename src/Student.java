@@ -1,11 +1,23 @@
 import java.util.Date;
+import java.util.Scanner;
 
 public class Student {
     private String fullName;
     private int groupNo;
     private double point;
-    private Date createdDate;
+    private final Date createdDate;
     private Date updatedDate;
+
+    public Student() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("FullName daxil et");
+        this.fullName = scanner.nextLine();
+        System.out.println("Grup no daxil et");
+        this.groupNo = scanner.nextInt();
+        System.out.println("Bal daxil et");
+        this.point = scanner.nextDouble();
+        this.createdDate = new Date();
+    }
 
     public Student(String fullName, int groupNo, double point) {
         this.fullName = fullName;
