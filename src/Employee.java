@@ -16,10 +16,27 @@ class Employee {
     private Date deletedDate;
 
     public Employee() {
-        System.out.println("Full name daxil et");
-        this.fullName = scanner.next();
-        System.out.println("position daxil et");
-        this.position = scanner.next();
+        while (true) {
+            System.out.println("Full name daxil et");
+            this.fullName = scanner.next();
+            if (fullName.length() <= 2) {
+                System.out.println("Full name min 2 herfden ibaret olmalidir!");
+                continue;
+            }
+            this.fullName = fullName;
+            break;
+        }
+        while (true) {
+            System.out.println("position daxil et");
+            this.position = scanner.next();
+            if (position.length() <= 2) {
+                System.out.println("Pozisiya min 2 herfden ibaret olmalidir!");
+                continue;
+            }
+            this.position = position;
+            break;
+        }
+
         while (true) {
             System.out.println("Salary daxil et:");
             double salary = scanner.nextDouble();
@@ -30,8 +47,18 @@ class Employee {
             this.salary = salary;
             break;
         }
-        System.out.println("Department name daxil et");
-        this.departmentName = scanner.next();
+
+
+        while (true) {
+            System.out.println("Department name daxil et");
+            this.departmentName = scanner.next();
+            if (departmentName.length() <= 2) {
+                System.out.println("Dep name min 2 herfden ibaret olmalidir!");
+                continue;
+            }
+            this.departmentName = departmentName;
+            break;
+        }
         EmployeeType employeeType;
         System.out.println("Employee type daxil et (1: FullTime, 2: PartTime, 3: Adjunct)");
         int employeeTypeChoice = scanner.nextInt();
@@ -67,8 +94,6 @@ class Employee {
                 ", position='" + position + '\'' +
                 ", salary=" + salary +
                 ", departmentName='" + departmentName + '\'' +
-                ", employeeType=" + employeeType +
-                ", createdDate=" + createdDate+
                 '}';
     }
 
@@ -85,14 +110,13 @@ class Employee {
     }
 
     public void setPosition(String position) {
-        while (true) {
+
             if (position.length() >= 2) {
                 this.position = position;
-                break;
             } else {
                 System.out.println("Minimum 2 herfden ibaret olmalidir");
             }
-        }
+
     }
 
     public double getSalary() {
