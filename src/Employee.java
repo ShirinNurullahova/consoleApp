@@ -68,9 +68,7 @@ class Employee {
                 ", salary=" + salary +
                 ", departmentName='" + departmentName + '\'' +
                 ", employeeType=" + employeeType +
-                ", createdDate=" + createdDate +
-                ", updatedDate=" + updatedDate +
-                ", deletedDate=" + deletedDate +
+                ", createdDate=" + createdDate+
                 '}';
     }
 
