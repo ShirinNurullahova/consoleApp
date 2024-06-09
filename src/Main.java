@@ -12,7 +12,7 @@ public class Main {
     }
 
     public static void menu() {
-        System.out.println("1. Student yarat");
+        System.out.println("1. Telebe yarat");
         System.out.println("2. Ishci yarat");
         System.out.println("3. Telebelerin siyahisini goster");
         System.out.println("4. Telebeni update et (groupNo)");
@@ -21,6 +21,8 @@ public class Main {
         System.out.println("7. Iscini sil (Employee No.)");
         System.out.println("8. Iscilerin maas ortalamasini goster");
         System.out.println("9. Ishchilerin siyahisini goster");
+        System.out.println("10.Universitetdeki ishcilerin siyahisini goster(Department Name.)");
+        System.out.println("11.Telebelerin siyahisini goster(Grup No.)");
         System.out.println("Secim et");
         int choose = scanner.nextInt();
         switch (choose) {
@@ -33,6 +35,8 @@ public class Main {
             case 7 -> university.deleteEmployee();
             case 8 -> university.calcSalaryAverage();
             case 9 -> university.getAllEmployees();
+            case 10-> university.getEmployeesByDepartmentName();
+            case 11-> university.getStudentsByGroupNo();
         }
     }
 }
