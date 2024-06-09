@@ -1,3 +1,4 @@
+import java.sql.SQLOutput;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -99,7 +100,25 @@ public class University {
             System.out.println("Telebe yoxdur");
         } else {
             for (Student student : students) {
+                if(student !=null){
                 System.out.println(student);
+            }}
+        }
+        return students;
+    }
+
+
+
+    public Student[] getStudentsByGroupNo() {
+        if (students.length == 0) {
+            System.out.println("Telebe yoxdur");
+        } else {
+            System.out.println("Grup nomresi daxil et:");
+            int groupNo = scanner.nextInt();
+            for (Student student : students) {
+                if (student != null && groupNo == student.getGroupNo()) {
+                    System.out.println(student.toString());
+                }
             }
         }
         return students;
@@ -110,13 +129,29 @@ public class University {
             System.out.println("Ischi yoxdur");
         } else {
             for (Employee employee : employees) {
-                if (employee.getDeletedDate() != null) {
+                if (employee.getDeletedDate() != null && employee != null) {
                     System.out.println(employee);
                 }
             }
         }
         return employees;
     }
+
+    public Employee[] getEmployeesByDepartmentName() {
+        if (employees.length == 0) {
+            System.out.println("Ischi yoxdur");
+        } else {
+            System.out.println("Department adi daxil et:");
+            String depname = scanner.next();
+            for (Employee employee : employees) {
+                if (employee != null && employee.getDeletedDate() == null && depname.equals(employee.getDepartmentName())) {
+                    System.out.println(employee.toString());
+                }
+            }
+        }
+        return employees;
+    }
+
 
     public void setStudents(Student[] students) {
         this.students = students;
@@ -173,20 +208,52 @@ public class University {
     }
 
     public void addStudent() {
+
         Student student = new Student();
-        Student[] newStudentsArray = new Student[students.length + 1];
-        for (int i = 0; i < students.length; i++) {
-            newStudentsArray[i] = students[i];
+        boolean hasEmpty = true;
+        for (int i = 0; i < students.length; i++){
+            if (students[i] == null){
+                students[i] = student;
+                hasEmpty = false;
+                break;
+            }
         }
-        newStudentsArray[students.length] = student;
-        students = newStudentsArray;
-        System.out.println("Yeniden davam etmek isteyirsiniz ?\n1. Yeni telebe elave et\n2. Menuya qayiq\n3.Cixish et");
+        if (hasEmpty) {
+            Student[] newStudent = new Student[students.length + 5];
+            for(int i = 0; i < employees.length; i++){
+                newStudent[i] = students[i];
+            }
+            int setToIndex= students.length;
+            students = newStudent;
+            students[setToIndex] = student;
+        }
+        System.out.println("Yeniden davam etmek isteyirsiniz ?\n1. Yeni ishchi elave et\n2. Menuya qayit\n3. Cixish et");
         int choice = scanner.nextInt();
         switch (choice) {
             case 1 -> addStudent();
             case 2 -> Main.menu();
-            case 3 -> System.exit(0);
+            case 3 ->  System.exit(0);
         }
+
+
+
+
+
+
+//        Student student = new Student();
+//        Student[] newStudentsArray = new Student[students.length + 1];
+//        for (int i = 0; i < students.length; i++) {
+//            newStudentsArray[i] = students[i];
+//        }
+//        newStudentsArray[students.length] = student;
+//        students = newStudentsArray;
+//        System.out.println("Yeniden davam etmek isteyirsiniz ?\n1. Yeni telebe elave et\n2. Menuya qayiq\n3.Cixish et");
+//        int choice = scanner.nextInt();
+//        switch (choice) {
+//            case 1 -> addStudent();
+//            case 2 -> Main.menu();
+//            case 3 -> System.exit(0);
+//        }
     }
 
     public void deleteEmployee() {
