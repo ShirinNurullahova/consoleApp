@@ -83,6 +83,154 @@ public class University {
         }
     }
 
+    public void updateEmployee() {
+        scanner.nextLine();
+        while (true) {
+            boolean found = false;
+            for (Employee employee : employees) {
+                System.out.println("Ishcilerin grup nomreleri " + employee.getNo());
+                System.out.println("Deyishmek istediyiniz ischinin nomresini daxil edin:");
+
+                String workerNo = scanner.nextLine();
+                if (employee != null && workerNo.equals(employee.getNo())) {
+                    System.out.println(employee.toString());
+                    System.out.println("Deyishmek istediyin salary daxil et:");
+                    double salary = scanner.nextDouble();
+                    System.out.println("Deyishmek istediyin position daxil et:");
+                    String position = scanner.next();
+                    employee.setSalary(salary);
+                    employee.setPosition(position);
+                    employee.setUpdatedDate(new Date());
+                    found = true;
+                    break;
+                }
+            }
+            if (!found) {
+                System.out.println("Bele bir ishci yoxdur, yeniden daxil et");
+            } else {
+                System.out.println("Ischi melumatlari yenilendi.");
+                break;
+            }
+        }
+    }
+
+    public void searchEmployeeByName() {
+        System.out.println("Axtarmaq istediyiniz ischinin adini daxil edin:");
+        String name = scanner.next();
+        boolean found = false;
+        for (Employee employee : employees) {
+            if (employee != null && employee.getFullName().equalsIgnoreCase(name)) {
+                System.out.println(employee.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Bele bir ischi tapilmadi");
+        }
+    }
+    public void searchEmployeeBySalary() {
+        System.out.println("Axtarmaq istediyiniz ischinin maashini daxil edin:");
+        double salary = scanner.nextDouble();
+        boolean found = false;
+        for (Employee employee : employees) {
+            if (employee != null && employee.getSalary() == salary) {
+                System.out.println(employee.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Bele bir ischi tapilmadi");
+        }
+    }
+
+    public void searchEmployeeByDepartmentName() {
+        System.out.println("Axtarmaq istediyiniz ischinin department adini daxil edin:");
+        String departmentName = scanner.next();
+        boolean found = false;
+        for (Employee employee : employees) {
+            if (employee != null && employee.getDepartmentName().equalsIgnoreCase(departmentName)) {
+                System.out.println(employee.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Bele bir ischi tapilmadi");
+        }
+    }
+
+    public void searchEmployeeByType() {
+        System.out.println("Axtarmaq istediyiniz ischinin novunu daxil edin (1: FullTime, 2: PartTime, 3: Adjunct):");
+        int type = scanner.nextInt();
+        EmployeeType employeeType;
+        switch (type) {
+            case 1 -> employeeType = EmployeeType.FullTime;
+            case 2 -> employeeType = EmployeeType.PartTime;
+            case 3 -> employeeType = EmployeeType.Adjunct;
+            default -> {
+                employeeType = EmployeeType.FullTime;
+                System.out.println("Invalid choice. Defaulting to FullTime");
+            }
+        }
+
+        boolean found = false;
+        for (Employee employee : employees) {
+            if (employee != null && employee.getEmployeeType() == employeeType) {
+                System.out.println(employee.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Bele bir ischi tapilmadi");
+        }
+    }
+
+
+    public void searchStudentByName() {
+        System.out.println("Axtarmaq istediyiniz telebenin adini daxil edin:");
+        String name = scanner.next();
+        boolean found = false;
+        for (Student student : students) {
+            if (student != null && student.getFullName().equalsIgnoreCase(name)) {
+                System.out.println(student.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Bele bir telebe tapilmadi");
+        }
+    }
+
+    public void searchStudentByPoint() {
+        System.out.println("Axtarmaq istediyiniz telebenin balini daxil edin:");
+        double point = scanner.nextDouble();
+        boolean found = false;
+        for (Student student : students) {
+            if (student != null && student.getPoint() == point) {
+                System.out.println(student.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Bele bir telebe tapilmadi");
+        }
+    }
+
+
+    public void searchStudentByGroupNumber() {
+        System.out.println("Axtarmaq istediyiniz telebenin grup nomresini daxil edin:");
+        int groupNo = scanner.nextInt();
+        boolean found = false;
+        for (Student student : students) {
+            if (student != null && student.getGroupNo() == groupNo) {
+                System.out.println(student.toString());
+                found = true;
+            }
+        }
+        if (!found) {
+            System.out.println("Bele bir telebe tapilmadi");
+        }
+    }
+
     public String getName() {
         return name;
     }
@@ -129,7 +277,7 @@ public class University {
             System.out.println("Ischi yoxdur");
         } else {
             for (Employee employee : employees) {
-                if (employee.getDeletedDate() != null && employee != null) {
+                if (employee != null && employee.getDeletedDate() == null) {
                     System.out.println(employee);
                 }
             }
@@ -191,24 +339,9 @@ public class University {
             case 2 -> Main.menu();
             case 3 ->  System.exit(0);
         }
-//        Employee student = new Employee();
-//        Employee[] newEmployeesArray = new Employee[employees.length + 1];
-//        for (int i = 0; i < employees.length; i++) {
-//            newEmployeesArray[i] = employees[i];
-//        }
-//        newEmployeesArray[employees.length] = student;
-//        employees = newEmployeesArray;
-//        System.out.println("Yeniden davam etmek isteyirsiniz ?\n1. Yeni telebe elave et\n2. Menuya qayiq\n3.Cixish et");
-//        int choice = scanner.nextInt();
-//        switch (choice) {
-//            case 1 -> addEmployee();
-//            case 2 -> Main.menu();
-//            case 3 -> System.exit(0);
-//        }
     }
 
     public void addStudent() {
-
         Student student = new Student();
         boolean hasEmpty = true;
         for (int i = 0; i < students.length; i++){
@@ -220,40 +353,20 @@ public class University {
         }
         if (hasEmpty) {
             Student[] newStudent = new Student[students.length + 5];
-            for(int i = 0; i < employees.length; i++){
+            for(int i = 0; i < students.length; i++){
                 newStudent[i] = students[i];
             }
             int setToIndex= students.length;
             students = newStudent;
             students[setToIndex] = student;
         }
-        System.out.println("Yeniden davam etmek isteyirsiniz ?\n1. Yeni ishchi elave et\n2. Menuya qayit\n3. Cixish et");
+        System.out.println("Yeniden davam etmek isteyirsiniz ?\n1. Yeni telebe elave et\n2. Menuya qayit\n3. Cixish et");
         int choice = scanner.nextInt();
         switch (choice) {
             case 1 -> addStudent();
             case 2 -> Main.menu();
             case 3 ->  System.exit(0);
         }
-
-
-
-
-
-
-//        Student student = new Student();
-//        Student[] newStudentsArray = new Student[students.length + 1];
-//        for (int i = 0; i < students.length; i++) {
-//            newStudentsArray[i] = students[i];
-//        }
-//        newStudentsArray[students.length] = student;
-//        students = newStudentsArray;
-//        System.out.println("Yeniden davam etmek isteyirsiniz ?\n1. Yeni telebe elave et\n2. Menuya qayiq\n3.Cixish et");
-//        int choice = scanner.nextInt();
-//        switch (choice) {
-//            case 1 -> addStudent();
-//            case 2 -> Main.menu();
-//            case 3 -> System.exit(0);
-//        }
     }
 
     public void deleteEmployee() {
