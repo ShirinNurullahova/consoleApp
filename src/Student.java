@@ -10,12 +10,37 @@ public class Student {
     private Date updatedDate;
 
     public Student() {
-        System.out.println("FullName daxil et");
-        this.fullName = scanner.nextLine();
-        System.out.println("Grup no daxil et");
-        this.groupNo = scanner.nextInt();
-        System.out.println("Bal daxil et");
-        this.point = scanner.nextDouble();
+        while (true) {
+            System.out.println("FullName daxil et");
+            this.fullName = scanner.nextLine();
+            if (fullName.length() <= 2) {
+                System.out.println("Fullname min 2 herfden ibaret olmalidir!");
+                continue;
+            }
+            this.fullName = fullName;
+            break;
+        }
+        while (true) {
+            System.out.println("Grup no daxil et");
+            this.groupNo = scanner.nextInt();
+            if (groupNo<=0) {
+                System.out.println("Grup no 0 dan boyuk olmalidir!");
+                continue;
+            }
+            this.groupNo = groupNo;
+            break;
+        }
+        while (true) {
+            System.out.println("Bal daxil et");
+            this.point = scanner.nextDouble();
+            if (point<0 || point>700) {
+                System.out.println("Bal 0 dan boyuk ve 700 den kicik olmalidir!");
+                continue;
+            }
+            this.point = point;
+            break;
+        }
+
         this.createdDate = new Date();
     }
 
